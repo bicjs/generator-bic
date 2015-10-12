@@ -1,0 +1,1 @@
+web: echo $CONFIG_KEY | npm run decrypt && npm start

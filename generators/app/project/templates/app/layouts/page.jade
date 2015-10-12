@@ -1,0 +1,7 @@
+extend /layouts/_base
+
+block css
+  link(rel='stylesheet', href=getFilePath('#{data.module.page.path.absolute}/index.css'))
+
+block js
+  script(defer, src=getFilePath('#{data.module.page.path.absolute}/index.js'))

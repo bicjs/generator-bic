@@ -1,0 +1,23 @@
+doctype htmls
+
+html(lang='en' class='no-js')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width,initial-scale=1')
+    title #{data.module.site.title} | #{data.module.config.title}
+    include /inputs/favicons/template
+
+    link(rel='stylesheet', href=getFilePath('/common/index.css'))
+    block css
+
+    script!= getFileContents([data.module.file.modernizr])
+
+  body
+
+    != getFileContents(data.module.file.icons)
+    include /mixins
+    
+    block content
+
+    script(defer, src=getFilePath('/common/index.js'))
+    block js
