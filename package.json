@@ -17,6 +17,9 @@
     "generators"
   ],
   "keywords": [
+    "bic",
+    "framework",
+    "website",
     "yeoman-generator"
   ],
   "dependencies": {
@@ -28,8 +31,7 @@
     "gulp-template": "^3.0.0",
     "inquirer": "^0.10.1",
     "lodash": "^3.10.1",
-    "yeoman-generator": "^0.19.0",
-    "yosay": "^1.0.2"
+    "yeoman-generator": "^0.19.0"
   },
   "devDependencies": {
     "mocha": "*"

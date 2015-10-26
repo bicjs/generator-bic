@@ -13,7 +13,7 @@ var whitelist = cfg.AUTH_HOST_WHITELIST ? cfg.AUTH_HOST_WHITELIST
   .reduce(function(obj, key) {
     obj[key] = true;
     return obj;
-  }, {}) : {};
+  }, {}) : null;
 
 module.exports = conditional(
 
@@ -23,9 +23,16 @@ module.exports = conditional(
 
     logger.debug('host', host);
 
-    logger.debug(whitelist[host] ? 'Whitelisted host ==> disable auth' : 'Blacklisted host ==> enable auth');
+    if (whitelist === null) {
 
-    return whitelist[host] === true ? false : true;
+      return false;
+
+    } else {
+
+      logger.debug(whitelist[host] ? 'Whitelisted host ==> disable auth' : 'Blacklisted host ==> enable auth');
+
+      return whitelist[host] === true ? false : true;
+    }
   },
 
   function(req, res, next) {
@@ -34,7 +41,7 @@ module.exports = conditional(
 
       res.set('WWW-Authenticate', 'Basic realm=Authorization Required');
 
-      return res.send(401);
+      return res.sendStatus(401);
     }
 
     var user = basicAuth(req);
@@ -44,7 +51,7 @@ module.exports = conditional(
       return unauthorized(res);
     }
 
-    if (user.name === process.env.AUTH_USERNAME && user.pass === process.env.AUTH_PASSWORD) {
+    if (user.name === cfg.AUTH_USERNAME && user.pass === cfg.AUTH_PASSWORD) {
 
       return next();
 

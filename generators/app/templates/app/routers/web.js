@@ -3,14 +3,13 @@
 var path = require('path');
 var fs = require('fs');
 var errorHandler = require('errorhandler');
-var rek = require('rekuire');
 
 var logger = require('@flickmy/bic-logger').get('routers/web');
 
 var bic = require('@flickmy/bic');
 var cfg = bic.config.getAll();
 
-var template = rek('app/template');
+var template = require('../template');
 
 var pageNames = [];
 
@@ -22,7 +21,7 @@ pageNames = fs
     // https://stackoverflow.com/questions/8905680/nodejs-check-for-hidden-files
     if ((/(^|.\/)\.+[^\/\.]/g).test(file) === false) {
 
-      return fs.statSync(path.join(cfg.dir.root, cfg.dir.pages, file)).isDirectory();
+      return fs.statSync(path.join(cfg.dir.projectRoot, cfg.dir.pages, file)).isDirectory();
     }
   });
 

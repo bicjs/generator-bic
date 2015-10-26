@@ -8,10 +8,12 @@ var template = require('gulp-template');
 var inquirer = require('inquirer');
 var _ = require('lodash');
 
-var prompts = require('./generators/app/project/prompts')({
+var projectName = path.basename(process.cwd());
+
+var prompts = require('./generators/app/prompts')({
   project: {
-    name: path.basename(process.cwd()),
-    title: path.basename(process.cwd())
+    name: projectName,
+    title: projectName
       .split('-')
       .reduce(function(title, word) {
         title.push(_.capitalize(word));
@@ -30,9 +32,15 @@ gulp.task('default', function(done) {
 
       gulp.src([
           '**',
-          '!**/.DS_Store'
+          '!**/.DS_Store',
+          '!**/node_modules',
+          '!**/bower_components',
+          '!**/generated',
+          '!**/dist',
+          '!**/.tmp',
+          '!**/*.log'
         ], {
-          cwd: path.join(__dirname, 'generators/app/project/templates'),
+          cwd: path.join(__dirname, 'generators/app/templates'),
           dot: true
         }) // Note use of __dirname to be relative to generator
         .pipe(template(answers)) // Lodash template support

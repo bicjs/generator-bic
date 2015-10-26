@@ -9,24 +9,23 @@ var ips = require('img-placeholder-src')({
   serviceOverride: 'placeimg'
 });
 
-var rek = require('rekuire');
-
 var logger = require('@flickmy/bic-logger').get('app/utils/template/config');
 
 var flint = require('@flickmy/bic');
 var cfg = flint.config.getAll();
 
 var baseDir = path.join(rootDir, cfg.dir.source);
-var mixins = fs.readFileSync(path.join(cfg.dir.root, cfg.dir.source, 'mixins.jade'), {
+
+var mixins = fs.readFileSync(path.join(cfg.dir.projectRoot, cfg.dir.source, 'mixins.jade'), {
   encoding: 'utf-8'
 });
 
-var getFilePath = rek('app/template/plugins/get-file-path')({
+var getFilePath = require('./plugins/get-file-path')({
   basePath: '/',
-  manifestPath: path.join(cfg.dir.root, cfg.model.file.manifest)
+  manifestPath: path.join(cfg.dir.projectRoot, cfg.model.file.manifest)
 });
 
-var getFileContents = rek('app/template/plugins/get-file-contents')({
+var getFileContents = require('./plugins/get-file-contents')({
   basePath: rootDir
 });
 

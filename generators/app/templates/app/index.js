@@ -9,19 +9,6 @@ var cfg = require('@flickmy/bic').config
   .init()
   .getAll();
 
-// Removes need for icky relative paths
-var rek = require('rekuire');
-
-// Ignoring these will speed things up a lot!
-rek.ignore(
-  cfg.packages.node,
-  cfg.packages.bower,
-  cfg.packages.local,
-  cfg.dir.generated,
-  cfg.dir.temp,
-  cfg.dir.dist
-);
-
 // Server
 var express = require('express');
 var morgan = require('morgan');
@@ -32,10 +19,10 @@ var cacheResponseDirective = require('express-cache-response-directive');
 var logger = require('@flickmy/bic-logger').get('app');
 
 // Custom middelwares
-var auth = rek('app/middlewares/auth');
+var auth = require('./middlewares/auth');
 
 // Routers
-var webRouter = rek('app/routers/web');
+var webRouter = require('./routers/web');
 
 /*-----  End of Setup  ------*/
 
@@ -72,10 +59,5 @@ app.set('port', process.env.PORT || 3002);
 app.listen(app.get('port'), function() {
   logger.info('Started on PORT', app.get('port'));
 });
-
-// Warm up the cache
-logger.info('Warming cache');
-var template = rek('app/template');
-template('', {});
 
 /*-----  End of Startup  ------*/
