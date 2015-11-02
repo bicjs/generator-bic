@@ -13,6 +13,17 @@ var _projectName = path.basename(process.cwd());
 
 var _answers;
 
+var _globPatterns = [
+  '**/*',
+  '!**/node_modules/**',
+  '!**/bower_components/**',
+  '!**/generated/**',
+  '!**/dist/**',
+  '!**/.tmp/**',
+  '!**/.DS_Store',
+  '!**/*.log'
+];
+
 var prompts = require('./generators/app/prompts')({
   project: {
     name: _projectName,
@@ -28,16 +39,7 @@ var prompts = require('./generators/app/prompts')({
 
 gulp.task('copy', function() {
 
-  return gulp.src([
-      '**',
-      '!**/.DS_Store',
-      '!**/node_modules',
-      '!**/bower_components',
-      '!**/generated',
-      '!**/dist',
-      '!**/.tmp',
-      '!**/*.log'
-    ], {
+  return gulp.src(_globPatterns, {
       cwd: path.join(__dirname, 'generators/app/src'),
       dot: true
     }) // Note use of __dirname to be relative to generator
@@ -47,16 +49,7 @@ gulp.task('copy', function() {
 
 gulp.task('template', function() {
 
-  return gulp.src([
-      '**',
-      '!**/.DS_Store',
-      '!**/node_modules',
-      '!**/bower_components',
-      '!**/generated',
-      '!**/dist',
-      '!**/.tmp',
-      '!**/*.log'
-    ], {
+  return gulp.src(_globPatterns, {
       cwd: path.join(__dirname, 'generators/app/templates'),
       dot: true
     }) // Note use of __dirname to be relative to generator
@@ -68,8 +61,8 @@ gulp.task('template', function() {
 gulp.task('install', function() {
 
   return gulp.src([
-      'node_modules',
-      'bower_components'
+      'package.json',
+      'bower.json'
     ], {
       cwd: './'
     })
