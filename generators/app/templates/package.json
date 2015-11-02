@@ -33,6 +33,7 @@
     "express-conditional-middleware": "^1.0.3",
     "faker": "^3.0.1",
     "fs-extra": "^0.24.0",
+    "gulp": "^3.9.0",
     "html-minifier": "^0.7.2",
     "img-placeholder-src": "^0.2.4",
     "jquery": "^2.1.4",
