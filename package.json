@@ -1,27 +1,17 @@
 {
   "name": "generator-bic",
-  "version": "0.0.0",
   "description": "Yeoman generator",
-  "license": "MIT",
-  "main": "app/index.js",
-  "repository": "flickmy/generator-bic",
+  "version": "0.0.0",
   "author": {
     "name": "Bic",
     "email": "github.raypatterson@gmail.com",
     "url": "https://github.com/flickmy"
   },
-  "scripts": {
-    "test": "mocha"
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   },
-  "files": [
-    "generators"
-  ],
-  "keywords": [
-    "bic",
-    "framework",
-    "website",
-    "yeoman-generator"
-  ],
   "dependencies": {
     "chalk": "^1.0.0",
     "gulp": "^3.9.0",
@@ -34,6 +24,22 @@
     "yeoman-generator": "^0.19.0"
   },
   "devDependencies": {
+    "cz-conventional-changelog": "^1.1.4",
     "mocha": "*"
+  },
+  "files": [
+    "generators"
+  ],
+  "keywords": [
+    "bic",
+    "framework",
+    "website",
+    "yeoman-generator"
+  ],
+  "license": "MIT",
+  "main": "app/index.js",
+  "repository": "flickmy/generator-bic",
+  "scripts": {
+    "test": "mocha"
   }
 }
