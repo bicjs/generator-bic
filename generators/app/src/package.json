@@ -1,27 +1,12 @@
 {
   "name": "name",
-  "description": "description",
   "version": "0.0.0",
-  "author": {
-    "name": "author",
-    "email": "email"
-  },
-  "bugs": "https://github.com/username/name/issues",
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
-  "contributors": [
-    {
-      "name": "author",
-      "email": "email"
-    }
-  ],
   "dependencies": {
-    "@flickmy/bic": "file:../bic",
-    "@flickmy/bic-logger": "file:../bic-logger",
-    "@flickmy/bic-template": "file:../bic-template",
     "app-root-path": "^1.0.0",
     "basic-auth": "^1.0.3",
     "bower": "^1.6.5",
@@ -32,13 +17,14 @@
     "express-cache-response-directive": "^0.2.0",
     "express-conditional-middleware": "^1.0.4",
     "faker": "^3.0.1",
-    "fs-extra": "^0.26.0",
+    "fs-extra": "^0.26.2",
     "html-minifier": "^1.0.0",
     "img-placeholder-src": "^0.2.4",
     "jquery": "^2.1.4",
     "lodash": "^3.10.1",
     "morgan": "^1.6.1",
     "normalize.css": "^3.0.3",
+    "npm-link-shared": "^0.2.0",
     "uglify-js": "^2.5.0"
   },
   "devDependencies": {
@@ -47,34 +33,30 @@
     "cz-conventional-changelog": "^1.1.4",
     "faucet": "0.0.1",
     "fixpack": "^2.2.0",
-    "node-readme": "^0.1.9"
+    "license-generator": "0.0.13",
+    "node-readme": "^0.1.9",
+    "npm-link-shared": "^0.2.0"
   },
   "engines": {
     "node": "4.1.x",
     "npm": "2.14.x"
   },
-  "homepage": "https://github.com/username/name#readme",
   "keywords": [
     "bic",
     "demo",
     "framework",
     "website"
   ],
-  "license": "MIT",
   "main": "app",
-  "repository": "github:username/name",
   "scripts": {
-    "bower": "./node_modules/bower/bin/bower install",
-    "buildpacks": "heroku buildpacks:set buildpack --app=name && heroku buildpacks:set buildpack --app=name-staging",
+    "bower": "node ./node_modules/.bin/bower install",
     "decrypt": "bic decrypt",
     "encrypt": "bic encrypt",
-    "heroku": "foreman start",
+    "link": "npm-link-shared ../local_modules .",
     "local": "bic sequence local",
-    "logs": "heroku logs --app=name --tail",
-    "logs:staging": "heroku logs --app=name-staging --tail",
+    "preinstall": "npm-link-shared ../local_modules ./node_modules",
     "prestart": "bic sequence deploy --release",
     "start": "node app --release",
     "test": "faucet"
-  },
-  "title": "title"
+  }
 }

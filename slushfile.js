@@ -49,6 +49,8 @@ gulp.task('copy', function() {
 
 gulp.task('template', function() {
 
+  _answers.year = new Date().getFullYear();
+
   return gulp.src(_globPatterns, {
       cwd: path.join(__dirname, 'generators/app/templates'),
       dot: true
