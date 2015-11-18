@@ -44,12 +44,13 @@ gulp.task('copy', function() {
       dot: true
     }) // Note use of __dirname to be relative to generator
     .pipe(conflict('./')) // Confirms overwrites on file conflicts
-    .pipe(gulp.dest('./')) // Without __dirname here = relative to cwd
+    .pipe(gulp.dest('./')); // Without __dirname here = relative to cwd
 });
 
 gulp.task('template', function() {
 
   _answers.year = new Date().getFullYear();
+  _answers.license = _answers.license.toUpperCase();
 
   return gulp.src(_globPatterns, {
       cwd: path.join(__dirname, 'generators/app/templates'),
@@ -57,7 +58,7 @@ gulp.task('template', function() {
     }) // Note use of __dirname to be relative to generator
     .pipe(template(_answers)) // Lodash template support
     .pipe(conflict('./')) // Confirms overwrites on file conflicts
-    .pipe(gulp.dest('./')) // Without __dirname here = relative to cwd
+    .pipe(gulp.dest('./')); // Without __dirname here = relative to cwd
 });
 
 gulp.task('install', function() {
@@ -79,7 +80,6 @@ gulp.task('default', function(done) {
 
       _answers = answers;
 
-      sequence('copy', 'template', 'install')(done);
-
+      sequence('copy', 'template' /*, 'install'*/ )(done);
     });
 });

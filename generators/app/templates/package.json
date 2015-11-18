@@ -19,6 +19,9 @@
     }
   ],
   "dependencies": {
+    "@flickmy/bic": "^0.0.0-1",
+    "@flickmy/bic-logger": "^0.0.0-1",
+    "@flickmy/bic-template": "^0.0.0-1",
     "app-root-path": "^1.0.0",
     "basic-auth": "^1.0.3",
     "bower": "^1.6.5",
@@ -46,12 +49,11 @@
     "faucet": "0.0.1",
     "fixpack": "^2.2.0",
     "license-generator": "0.0.13",
-    "node-readme": "^0.1.9",
-    "npm-link-shared": "^0.2.0"
+    "node-readme": "^0.1.9"
   },
   "engines": {
-    "node": "4.1.x",
-    "npm": "2.14.x"
+    "node": "5.0.x",
+    "npm": "3.3.x"
   },
   "homepage": "https://github.com/<%= username %>/<%= name %>#readme",
   "keywords": [
@@ -70,11 +72,11 @@
     "encrypt": "bic encrypt",
     "heroku": "foreman start",
     "license": "node ./node_modules/.bin/license-generator install <%= license %> -y <%= year %> -n '<%= author %>' -p <%= name %>",
-    "link": "npm-link-shared ../local_modules .",
-    "local": "bic sequence local",
+    "link": "npm i symlink && node ./node_modules/.bin/symlink ../ --execute",
+    "dev": "bic sequence dev",
     "logs": "heroku logs --app=<%= name %> --tail",
     "logs:staging": "heroku logs --app=<%= name %>-staging --tail",
-    "postinstall": "npm run bower & npm run link & npm run license & npm run readme",
+    "postinstall": "npm run bower & npm run license & npm run readme",
     "prestart": "bic sequence deploy --release",
     "readme": "node ./node_modules/.bin/node-readme",
     "start": "node app --release",

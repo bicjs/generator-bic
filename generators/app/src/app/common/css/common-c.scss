@@ -1,5 +1,8 @@
 /* Common styles - C */
+
+@import 'colors';
+
 .content {
-  background: blue;
+  background: $blue;
 }
 /* End: Common styles - C */

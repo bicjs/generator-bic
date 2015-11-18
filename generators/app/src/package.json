@@ -7,6 +7,9 @@
     }
   },
   "dependencies": {
+    "@flickmy/bic": "^0.0.0-1",
+    "@flickmy/bic-logger": "^0.0.0-1",
+    "@flickmy/bic-template": "^0.0.0-1",
     "app-root-path": "^1.0.0",
     "basic-auth": "^1.0.3",
     "bower": "^1.6.5",
@@ -34,12 +37,11 @@
     "faucet": "0.0.1",
     "fixpack": "^2.2.0",
     "license-generator": "0.0.13",
-    "node-readme": "^0.1.9",
-    "npm-link-shared": "^0.2.0"
+    "node-readme": "^0.1.9"
   },
   "engines": {
-    "node": "4.1.x",
-    "npm": "2.14.x"
+    "node": "5.0.x",
+    "npm": "3.3.x"
   },
   "keywords": [
     "bic",
@@ -52,10 +54,12 @@
     "bower": "node ./node_modules/.bin/bower install",
     "decrypt": "bic decrypt",
     "encrypt": "bic encrypt",
-    "link": "npm-link-shared ../local_modules .",
-    "local": "bic sequence local",
-    "preinstall": "npm-link-shared ../local_modules ./node_modules",
+    "heroku": "foreman start",
+    "link": "npm i symlink && node ./node_modules/.bin/symlink ../ --execute",
+    "dev": "bic sequence dev",
+    "postinstall": "npm run bower & npm run license & npm run readme",
     "prestart": "bic sequence deploy --release",
+    "readme": "node ./node_modules/.bin/node-readme",
     "start": "node app --release",
     "test": "faucet"
   }
