@@ -30,7 +30,7 @@
     "mocha": "^2.3.3"
   },
   "engines": {
-    "node": "5.0.x",
+    "node": "5.1.x",
     "npm": "3.3.x"
   },
   "files": [

@@ -40,7 +40,7 @@
     "node-readme": "^0.1.9"
   },
   "engines": {
-    "node": "5.0.x",
+    "node": "5.1.x",
     "npm": "3.3.x"
   },
   "keywords": [
