@@ -1,17 +1,9 @@
-/* Common styles */
+/// Common styles
 
-/* Vendor styles */
+@import 'css/partials/colors';
 
-@import "~normalize.css/normalize.css";
+@import 'css/common-a';
+@import 'css/common-b';
+@import 'css/common-c';
 
-/* End: Vendor styles */
-
-/* Custom styles */
-
-@import "css/common-a";
-@import "css/common-b";
-@import "css/common-c";
-
-/* End: Custom styles */
-
-/* End: Common styles */
+/// End: Common styles

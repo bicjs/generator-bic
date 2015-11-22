@@ -7,6 +7,7 @@ html(lang='en' class='no-js')
     title #{data.module.site.title} | #{data.module.config.title}
     include /inputs/favicons/template
 
+    link(rel='stylesheet', href=getFilePath('/vendor/index.css'))
     link(rel='stylesheet', href=getFilePath('/common/index.css'))
     block css
 
@@ -19,5 +20,6 @@ html(lang='en' class='no-js')
     
     block content
 
+    script(src=getFilePath('/vendor/index.js'))
     script(defer, src=getFilePath('/common/index.js'))
     block js

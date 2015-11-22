@@ -9,9 +9,9 @@ var ips = require('img-placeholder-src')({
   serviceOverride: 'placeimg'
 });
 
-var logger = require('@flickmy/bic-logger').get('app/utils/template/config');
+var logger = require('@bicjs/bic-logger').get('app/utils/template/config');
 
-var flint = require('@flickmy/bic');
+var flint = require('@bicjs/bic');
 var cfg = flint.config.getAll();
 
 var baseDir = path.join(rootDir, cfg.dir.source);

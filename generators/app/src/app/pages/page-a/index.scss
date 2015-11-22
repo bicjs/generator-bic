@@ -1,1 +1,17 @@
 /* Page styles */
+
+@import "common/css/partials/colors";
+
+.page-a {
+  background: $blue;
+}
+
+.keep-this {
+  background: $green;
+}
+
+.remove-this {
+  background: $red;
+}
+
+/* End: Page styles */

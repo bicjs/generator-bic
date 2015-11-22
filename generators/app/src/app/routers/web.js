@@ -4,9 +4,9 @@ var path = require('path');
 var fs = require('fs');
 var errorHandler = require('errorhandler');
 
-var logger = require('@flickmy/bic-logger').get('routers/web');
+var logger = require('@bicjs/bic-logger').get('routers/web');
 
-var bic = require('@flickmy/bic');
+var bic = require('@bicjs/bic');
 var cfg = bic.config.getAll();
 
 var template = require('../template');

@@ -7,11 +7,12 @@
     }
   },
   "dependencies": {
-    "@flickmy/bic": "^0.0.0-1",
-    "@flickmy/bic-logger": "^0.0.0-1",
-    "@flickmy/bic-template": "^0.0.0-1",
+    "@bicjs/bic": "^0.0.0-1",
+    "@bicjs/bic-logger": "^0.0.0-1",
+    "@bicjs/bic-template": "^0.0.0-1",
     "app-root-path": "^1.0.0",
     "basic-auth": "^1.0.3",
+    "bootstrap-sass": "3.3.5",
     "bower": "^1.6.5",
     "compression": "^1.6.0",
     "csso": "^1.4.1",
@@ -36,8 +37,12 @@
     "cz-conventional-changelog": "^1.1.4",
     "faucet": "0.0.1",
     "fixpack": "^2.2.0",
+    "license-checker": "4.2.0",
     "license-generator": "0.0.13",
-    "node-readme": "^0.1.9"
+    "node-readme": "^0.1.9",
+    "npm-check": "4.1.3",
+    "npm-shrinkwrap": "200.4.0",
+    "symlink": "2.1.0"
   },
   "engines": {
     "node": "5.1.x",
@@ -50,17 +55,5 @@
     "website"
   ],
   "main": "app",
-  "scripts": {
-    "bower": "node ./node_modules/.bin/bower install",
-    "decrypt": "bic decrypt",
-    "encrypt": "bic encrypt",
-    "heroku": "foreman start",
-    "link": "npm i symlink && node ./node_modules/.bin/symlink ../ --execute",
-    "dev": "bic sequence dev",
-    "postinstall": "npm run bower & npm run license & npm run readme",
-    "prestart": "bic sequence deploy --release",
-    "readme": "node ./node_modules/.bin/node-readme",
-    "start": "node app --release",
-    "test": "faucet"
-  }
+  "scripts": {}
 }

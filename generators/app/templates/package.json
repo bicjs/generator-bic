@@ -10,7 +10,8 @@
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
-    }
+    },
+    "DOCS_DIR": "./docs"
   },
   "contributors": [
     {
@@ -19,11 +20,12 @@
     }
   ],
   "dependencies": {
-    "@flickmy/bic": "^0.0.0-1",
-    "@flickmy/bic-logger": "^0.0.0-1",
-    "@flickmy/bic-template": "^0.0.0-1",
+    "@bicjs/bic": "^0.0.0-1",
+    "@bicjs/bic-logger": "^0.0.0-1",
+    "@bicjs/bic-template": "^0.0.0-1",
     "app-root-path": "^1.0.0",
     "basic-auth": "^1.0.3",
+    "bootstrap-sass": "3.3.5",
     "bower": "^1.6.5",
     "compression": "^1.6.0",
     "csso": "^1.4.1",
@@ -48,8 +50,12 @@
     "cz-conventional-changelog": "^1.1.4",
     "faucet": "0.0.1",
     "fixpack": "^2.2.0",
+    "license-checker": "4.2.0",
     "license-generator": "0.0.13",
-    "node-readme": "^0.1.9"
+    "node-readme": "^0.1.9",
+    "npm-check": "4.1.3",
+    "npm-shrinkwrap": "200.4.0",
+    "symlink": "2.1.0"
   },
   "engines": {
     "node": "5.1.x",
@@ -66,21 +72,27 @@
   "main": "app",
   "repository": "github:<%= username %>/<%= name %>",
   "scripts": {
-    "bower": "node ./node_modules/.bin/bower install",
+    "bower": "bower install",
     "buildpacks": "heroku buildpacks:set <%= buildpack %> --app=<%= name %> && heroku buildpacks:set <%= buildpack %> --app=<%= name %>-staging",
-    "decrypt": "bic decrypt",
-    "encrypt": "bic encrypt",
-    "heroku": "foreman start",
-    "license": "node ./node_modules/.bin/license-generator install <%= license %> -y <%= year %> -n '<%= author %>' -p <%= name %>",
-    "link": "npm i symlink && node ./node_modules/.bin/symlink ../ --execute",
+    "deps:check": "npm-check --update",
     "dev": "bic sequence dev",
+    "heroku": "foreman start",
+    "license": "npm run license:generator & npm run license:checker",
+    "license:checker": "license-checker --customPath ./license-checker.json --out ./docs/licenses.md --markdown",
+    "license:generator": "license-generator install <%= license %> -y <%= year %> -n <%= author %> -p <%= name %>",
+    "link": "symlink ../ --execute",
     "logs": "heroku logs --app=<%= name %> --tail",
     "logs:staging": "heroku logs --app=<%= name %>-staging --tail",
-    "postinstall": "npm run bower & npm run license & npm run readme",
-    "prestart": "bic sequence deploy --release",
-    "readme": "node ./node_modules/.bin/node-readme",
+    "postinstall": "npm run bower & npm run license && npm run readme",
+    "postlink": "npm run postinstall",
+    "prelink": "npm i symlink",
+    "prestart": "bic sequence --release deploy",
+    "readme": "node-readme",
+    "shrinkwrap": "npm-shrinkwrap",
     "start": "node app --release",
-    "test": "faucet"
+    "test": "faucet",
+    "vars:decrypt": "bic decrypt",
+    "vars:encrypt": "bic encrypt"
   },
   "title": "<%= title %>"
 }

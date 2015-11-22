@@ -4,14 +4,14 @@ var path = require('path');
 var fs = require('fs-extra');
 var _ = require('lodash');
 
-var logger = require('@flickmy/bic-logger').get('app/utils/template');
+var logger = require('@bicjs/bic-logger').get('app/utils/template');
 
-var bic = require('@flickmy/bic');
+var bic = require('@bicjs/bic');
 var cfg = bic.config.getAll();
 
 var pageData = cfg.model;
 
-var Render = require('@flickmy/bic-template');
+var Render = require('@bicjs/bic-template');
 var render = new Render(require('./config'));
 
 var cache = {};

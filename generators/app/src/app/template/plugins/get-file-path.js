@@ -4,7 +4,7 @@ var path = require('path');
 var fs = require('fs-extra');
 var _ = require('lodash');
 
-var logger = require('@flickmy/bic-logger').get('Get File Path');
+var logger = require('@bicjs/bic-logger').get('Get File Path');
 
 module.exports = function getFilePath(options) {
 

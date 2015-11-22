@@ -3,7 +3,6 @@
 var path = require('path');
 var gulp = require('gulp');
 var sequence = require('gulp-sequence');
-var install = require('gulp-install');
 var conflict = require('gulp-conflict');
 var template = require('gulp-template');
 var inquirer = require('inquirer');
@@ -37,7 +36,7 @@ var prompts = require('./generators/app/prompts')({
   }
 });
 
-gulp.task('copy', function() {
+gulp.task('src', function() {
 
   return gulp.src(_globPatterns, {
       cwd: path.join(__dirname, 'generators/app/src'),
@@ -47,7 +46,7 @@ gulp.task('copy', function() {
     .pipe(gulp.dest('./')); // Without __dirname here = relative to cwd
 });
 
-gulp.task('template', function() {
+gulp.task('templates', function() {
 
   _answers.year = new Date().getFullYear();
   _answers.license = _answers.license.toUpperCase();
@@ -61,17 +60,6 @@ gulp.task('template', function() {
     .pipe(gulp.dest('./')); // Without __dirname here = relative to cwd
 });
 
-gulp.task('install', function() {
-
-  return gulp.src([
-      'package.json',
-      'bower.json'
-    ], {
-      cwd: './'
-    })
-    .pipe(install()); // Run `bower install` and/or `npm install` if necessary
-});
-
 gulp.task('default', function(done) {
 
   inquirer.prompt(prompts,
@@ -80,6 +68,6 @@ gulp.task('default', function(done) {
 
       _answers = answers;
 
-      sequence('copy', 'template' /*, 'install'*/ )(done);
+      sequence('src', 'templates')(done);
     });
 });

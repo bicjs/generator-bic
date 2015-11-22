@@ -12,7 +12,7 @@ var minify = require('html-minifier').minify;
 var uglify = require('uglify-js');
 var csso = require('csso');
 
-var logger = require('@flickmy/bic-logger').get('Get File Contents');
+var logger = require('@bicjs/bic-logger').get('Get File Contents');
 
 var readFileSync = _.memoize(function(filePath) {
 

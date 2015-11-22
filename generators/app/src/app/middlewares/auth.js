@@ -1,12 +1,12 @@
 'use strict';
 
-var bic = require('@flickmy/bic');
+var bic = require('@bicjs/bic');
 var cfg = bic.config.getAll();
 
 var basicAuth = require('basic-auth');
 var conditional = require('express-conditional-middleware');
 
-var logger = require('@flickmy/bic-logger').get('middleware/auth');
+var logger = require('@bicjs/bic-logger').get('middleware/auth');
 
 var whitelist = cfg.AUTH_HOST_WHITELIST ? cfg.AUTH_HOST_WHITELIST
   .split(',')

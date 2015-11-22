@@ -5,7 +5,7 @@
 =============================*/
 
 // Config
-var cfg = require('@flickmy/bic').config
+var cfg = require('@bicjs/bic').config
   .init()
   .getAll();
 
@@ -16,7 +16,7 @@ var compression = require('compression');
 var cacheResponseDirective = require('express-cache-response-directive');
 
 // Logger
-var logger = require('@flickmy/bic-logger').get('app');
+var logger = require('@bicjs/bic-logger').get('app');
 
 // Custom middelwares
 var auth = require('./middlewares/auth');

@@ -1,8 +1,15 @@
-/* Common styles - B */
+/// Common styles - B
 
-@import 'colors';
-
-.content {
+.common-b {
   background: $white;
 }
-/* End: Common styles - B */
+
+.keep-this {
+  background: $green;
+}
+
+.remove-this {
+  background: $red;
+}
+
+/// End: Common styles - B

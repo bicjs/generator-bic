@@ -5,10 +5,8 @@
  * 	 TODO: Check if [CSS resolving order](https://github.com/webpack/webpack/issues/215) issue is resolved
  */
 
-require('common/index.scss');
+require('./index.scss');
 
 /* `require` JS resources as  you would with `<script>` tags in HTML */
-
-window.jQuery = require('jquery');
 
 module.exports = null;

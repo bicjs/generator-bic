@@ -1,3 +1,17 @@
 /* Page styles */
 
+@import "common/css/partials/colors";
+
+.index {
+  background: $white;
+}
+
+.keep-this {
+  background: $green;
+}
+
+.remove-this {
+  background: $red;
+}
+
 /* End: Page styles */
