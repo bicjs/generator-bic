@@ -14,7 +14,6 @@
   },
   "dependencies": {
     "chalk": "1.1.1",
-    "cz-conventional-changelog": "1.1.4",
     "globby": "4.0.0",
     "gulp": "3.9.0",
     "gulp-conflict": "0.4.0",
@@ -28,6 +27,7 @@
   },
   "devDependencies": {
     "chalk": "1.1.1",
+    "commitizen": "2.4.6",
     "cz-conventional-changelog": "1.1.4",
     "gulp": "3.9.0",
     "gulp-conflict": "0.4.0",
@@ -56,6 +56,8 @@
   "main": "app/index.js",
   "repository": "flickmy/generator-bic",
   "scripts": {
+    "cz": "git-cz",
+    "preinstall": "npm run install:commitizen",
     "test": "mocha"
   }
 }
