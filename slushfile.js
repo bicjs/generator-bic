@@ -1,18 +1,19 @@
 'use strict';
 
-var path = require('path');
-var gulp = require('gulp');
-var sequence = require('gulp-sequence');
-var conflict = require('gulp-conflict');
-var template = require('gulp-template');
-var inquirer = require('inquirer');
-var _ = require('lodash');
+let glob = require('globby');
+let path = require('path');
+let gulp = require('gulp');
+let sequence = require('gulp-sequence');
+let conflict = require('gulp-conflict');
+let template = require('gulp-template');
+let inquirer = require('inquirer');
+let _ = require('lodash');
 
-var _projectName = path.basename(process.cwd());
+let _projectName = path.basename(process.cwd());
 
-var _answers;
+let _answers;
 
-var _globPatterns = [
+let _src = [
   '**/*',
   '!**/node_modules/**',
   '!**/bower_components/**',
@@ -23,7 +24,7 @@ var _globPatterns = [
   '!**/*.log'
 ];
 
-var prompts = require('./generators/app/prompts')({
+let prompts = require('./generators/app/prompts')({
   project: {
     name: _projectName,
     title: _projectName
@@ -36,10 +37,27 @@ var prompts = require('./generators/app/prompts')({
   }
 });
 
+const SRC_DIR = path.join(__dirname, 'generators/app/src');
+const TEMPLATE_DIR = path.join(__dirname, 'generators/app/templates');
+
 gulp.task('src', function() {
 
-  return gulp.src(_globPatterns, {
-      cwd: path.join(__dirname, 'generators/app/src'),
+  // Ignore files used as templates.
+  let src = _src.concat(glob.sync([
+      '**/*.*',
+      '!**/.tmp/**',
+      '!**/.DS_Store',
+      '!**/*.log'
+    ], {
+      cwd: TEMPLATE_DIR,
+      dot: true
+    })
+    .map((pattern) => {
+      return `!${path.join('**', pattern)}`;
+    }));
+
+  return gulp.src(src, {
+      cwd: SRC_DIR,
       dot: true
     }) // Note use of __dirname to be relative to generator
     .pipe(conflict('./')) // Confirms overwrites on file conflicts
@@ -51,8 +69,8 @@ gulp.task('templates', function() {
   _answers.year = new Date().getFullYear();
   _answers.license = _answers.license.toUpperCase();
 
-  return gulp.src(_globPatterns, {
-      cwd: path.join(__dirname, 'generators/app/templates'),
+  return gulp.src(_src, {
+      cwd: TEMPLATE_DIR,
       dot: true
     }) // Note use of __dirname to be relative to generator
     .pipe(template(_answers)) // Lodash template support
